@@ -1,0 +1,1 @@
+import{A as e}from"./AppLayout-02188963.js";import{P as t}from"./PageHeader-990117fa.js";import{_ as a,d as n,o as p,h as r,l as s}from"./app-5a739dd9.js";const c=n({components:{AppLayout:e,PageHeader:t}});function l(_,f,m,u,i,d){const o=s("app-layout");return p(),r(o,{title:"Heal Yourself"})}const H=a(c,[["render",l]]);export{H as default};

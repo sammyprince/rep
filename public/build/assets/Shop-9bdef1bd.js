@@ -1,0 +1,1 @@
+import{A as e,N as t}from"./AppLayout-02188963.js";import{P as a}from"./PageHeader-990117fa.js";import{_ as p,d as s,o as n,h as r,l as c}from"./app-5a739dd9.js";const _=s({components:{AppLayout:e,Navbar:t,PageHeader:a}});function m(f,i,l,d,u,h){const o=c("app-layout");return n(),r(o,{title:"shop"})}const k=p(_,[["render",m]]);export{k as default};
