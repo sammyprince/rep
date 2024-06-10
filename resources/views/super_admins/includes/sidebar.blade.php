@@ -63,6 +63,20 @@
                     </li>
                 @endif
 
+                @if ($user && ($user->hasPermission('booked_appointements.index') || $user->hasPermission('booked_appointements.show')))
+                    <li class="nav-item">
+                        <a href="{{ route('super_admin.booked_appointments.index') }}"
+                            class="nav-link @if (Route::is('super_admin.booked_appointments.*')) nav-link-active @endif">
+                            <span class="shape-1"></span>
+                            <span class="shape-2"></span>
+                            <i class="fa-solid fa-file-alt icon-size"></i>
+                            <span class="text">
+                                Booked Appointments
+                            </span>
+                        </a>
+                    </li>
+                @endif  
+
                 @if (
                     $user &&
                         ($user->hasPermission('lawyer_main_category.index') ||
@@ -237,19 +251,6 @@
 
                             </ul>
                         </div>
-                    </li>
-                @endif
-                @if ($user && ($user->hasPermission('booked_appointements.index') || $user->hasPermission('booked_appointements.show')))
-                    <li class="nav-item">
-                        <a href="{{ route('super_admin.booked_appointments.index') }}"
-                            class="nav-link @if (Route::is('super_admin.booked_appointments.*')) nav-link-active @endif">
-                            <span class="shape-1"></span>
-                            <span class="shape-2"></span>
-                            <i class="fa-solid fa-file-alt icon-size"></i>
-                            <span class="text">
-                                Booked Appointments
-                            </span>
-                        </a>
                     </li>
                 @endif
                 @if ($user && ($user->hasPermission('podcast.index') || $user->hasPermission('podcast_category.index')))

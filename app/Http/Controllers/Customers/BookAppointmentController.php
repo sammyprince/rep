@@ -69,6 +69,16 @@ class BookAppointmentController extends Controller
         return $customer_appointments;
     }
 
+    public function createBookAppointment(Request $request)
+    {
+        $gateways = \App\Models\Gateway::where('status', 1)->get();
+        $appointment_type = AppointmentType::where('is_active', 1)->get();
+
+        return Inertia::render('BookAppointment', [
+            "gateways" => $gateways,
+            "appointment_type" => $appointment_type
+        ]);
+    }
     public function bookAppointment(BookAppointmentRequest $request)
     {
         $data = $request->all();
@@ -76,21 +86,32 @@ class BookAppointmentController extends Controller
         $customer = $user->customer->id;
         $appointment_type = AppointmentType::where('id', $request->appointment_type_id)->first();
         if ($appointment_type->is_schedule_required) {
-            $schedule_slot = AppointmentScheduleSlot::with('appointment_schedule')->where('id', $request->selected_schedule_id)->first();
-            $data['start_time'] = $schedule_slot->start_time;
-            $data['end_time'] = $schedule_slot->end_time;
-            $data['fee'] = $schedule_slot->appointment_schedule->fee;
+            if(isset($request->selected_schedule_id)){
+                $schedule_slot = AppointmentScheduleSlot::with('appointment_schedule')->where('id', $request->selected_schedule_id)->first();
+                $data['start_time'] = $schedule_slot->start_time;
+                $data['end_time'] = $schedule_slot->end_time;
+                $data['fee'] = $schedule_slot->appointment_schedule->fee;
+            }else{
+                $data['start_time'] = $request->start_time??"00:00";
+                $data['end_time'] = $request->end_time??"00:00";
+                $data['fee'] = $request->fee??10;
+            }
         } else {
+            $fee = $request->fee??10;
             if (isset($request->lawyer_id)) {
                 $appointment_schedule = AppointmentSchedule::where('lawyer_id', $request->lawyer_id)->where('appointment_type_id', $request->appointment_type_id)->first();
+                if($appointment_schedule)
+                    $fee = $appointment_schedule->fee;
             }
             if (isset($request->law_firm_id)) {
                 $appointment_schedule = AppointmentSchedule::where('law_firm_id', $request->law_firm_id)->where('appointment_type_id', $request->appointment_type_id)->first();
+                if($appointment_schedule)
+                    $fee = $appointment_schedule->fee;
             }
 
             $data['start_time'] = null;
             $data['end_time'] = null;
-            $data['fee'] = $appointment_schedule->fee;
+            $data['fee'] = $fee;
         }
 
         $data['customer_id'] = $customer;

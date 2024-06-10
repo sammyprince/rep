@@ -81,12 +81,11 @@ class BookedAppointmentsController extends Controller
         $data = $request->all();
         try {
             DB::beginTransaction();
-            if (!$request->is_active) {
-                $data['is_active'] = 0;
+            if (!$request->is_paid) {
+                $data['is_paid'] = 0;
             }
-            $data['image'] = uploadCroppedFile($request,'image','booked_appointments');
+            $data['attachment_url'] = uploadFile($request,'attachment_url','booked_appointments');
             $booked_appointment = BookAppointment::create($data);
-            $booked_appointment->slug = Str::slug($booked_appointment->name . ' ' . $booked_appointment->id, '-');
             $booked_appointment->save();
             DB::commit();
         } catch (\Exception $e) {
@@ -118,14 +117,13 @@ class BookedAppointmentsController extends Controller
 
         try {
             DB::beginTransaction();
-            if (!$request->is_active) {
-                $data['is_active'] = 0;
+            if (!$request->is_paid) {
+                $data['is_paid'] = 0;
             }
             if ($request->image) {
-                $data['image'] = uploadCroppedFile($request,'image','booked_appointments',$booked_appointment->image);
-
+                $data['attachment_url'] = uploadFile($request,'attachment_url','booked_appointments');
             } else {
-                $data['image'] = $booked_appointment->image;
+                $data['attachment_url'] = $booked_appointment->attachment_url;
             }
             $booked_appointment->update($data);
             DB::commit();

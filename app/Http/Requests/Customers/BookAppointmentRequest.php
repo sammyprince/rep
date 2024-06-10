@@ -28,7 +28,7 @@ class BookAppointmentRequest extends FormRequest
             'date' => 'required',
             // 'healer_id' => 'required|integer',
             'appointment_type_id' => 'required|integer',
-            'selected_schedule_id' => 'required_if:appointment_type_id,1,2',
+            // 'selected_schedule_id' => 'required_if:appointment_type_id,1,2',
         ];
     }
 }

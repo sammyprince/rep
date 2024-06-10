@@ -39,27 +39,27 @@
               >{{ __('general info') }}</button>
             </li>
             <li class="nav-item" role="presentation">
-              <a
+              <Link
                 class="nav-link w-100"
                 :class="{active: active_tab == 'bookings'}"
-                href="https://acemastars.com/appointment_log"
+                href="appointment_log"
                 id="bookings-tab"
                 role="tab"
                 aria-controls="bookings"
                 aria-selected="true"
-              > My Appointments & Bookings</a>
+              > My Appointments & Bookings</Link>
             </li>
             <p></p>
             <li class="nav-item" role="presentation">
-              <a
+              <Link
                 class="nav-link w-100"
                 :class="{active: active_tab == 'bookings'}"
-                href="https://acemastars.com/categories"
+                href="categories"
                 id="bookings-tab"
                 role="tab"
                 aria-controls="bookings"
                 aria-selected="true"
-              > Book a Handyman Now</a>
+              > Book a Handyman Now</Link>
             </li>
 
           </div>

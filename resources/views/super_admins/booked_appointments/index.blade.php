@@ -14,12 +14,21 @@
         <div class="container-fluid">
             <div class="row align-items-center mb-4 pt-4 pt-lg-0">
 
-                <div class="col-md-7 mb-3 mb-lg-0">
+                <div class="col-md-7">
                     <h2 class="main-content-title fw-bold mb-0">Booked Appointments</h2>
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item"><a href="{{ route('super_admin.dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item active">Booked Appointments</li>
                     </ol>
+                </div>
+                <div class="col-md-5">
+                    <div class="d-flex justify-content-start justify-content-md-end">
+                        @if (auth()->user()->hasPermission('booked_appointments.add'))
+                            <a href="{{ route('super_admin.booked_appointments.create') }}" class="btn btn-primary  ml-2">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i><span class="ml-2">Add Appointments</span>
+                            </a>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
