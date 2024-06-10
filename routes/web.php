@@ -135,6 +135,7 @@ Route::prefix('customers')->name('customers.')->group(function () {
 Route::prefix('customers')->name('customers.')->group(function () {
     Route::post('update_general_info', [AccountController::class, 'updateCustomerGeneralInformation'])->name('update_general_info');
     Route::post('book_appointment', [BookAppointmentController::class, 'bookAppointment'])->name('book_appointment');
+    Route::get('book_appointment', [BookAppointmentController::class, 'createBookAppointment'])->name('create_book_appointment');
 });
 Route::prefix('lawyer')->name('lawyer.')->group(function () {
     Route::get('profile', [LawyerProfileController::class, 'myProfile'])->name('my_profile');

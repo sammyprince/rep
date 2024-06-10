@@ -45,6 +45,9 @@
                                     <div v-if="currentTab === index">
                                         <div class="col-12">
                                             <div class="d-md-flex align-items-center justify-content-end mb-3">
+                                                <Link href="customers/book_appointment" class="btn btn-primary me-2">
+                                                    Create Appointment
+                                                </Link>
 
                                                 <div class="form-group me-2 mb-3 mb-md-0">
                                                     <select  v-model="filter.column"

@@ -89,6 +89,7 @@ Route::middleware(['auth', 'super_admin'])->prefix('super_admin')->name('super_a
     Route::get('dashboard', [DashboardController::class, 'home'])->name('dashboard');
     Route::resource('users', UsersController::class);
     Route::crudRoutes('customers', CustomersController::class);
+
     Route::crudRoutes('lawyers', LawyersController::class);
     Route::get('lawyers/blogs/{lawyer}', [LawyersController::class, 'viewBlogs'])->name('lawyers.blog');
     Route::get('lawyers/events/{lawyer}', [LawyersController::class, 'viewEvents'])->name('lawyers.event');
